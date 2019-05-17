@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="/static/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+<div class="test">
+    <label class="">地区</label>
+    <div class="">
+        <select id="select">
+            <option value="0">请选择</option>
+            <option class="opt" th:text="${HNS}" th:value="${HNS}"></option>
+            <option class="opt" th:text="${GDS}" th:value="${GDS}"></option>
+            <option class="opt" th:text="${BJS}" th:value="${BJS}"></option>
+            <option class="opt" th:text="${FJS}" th:value="${FJS}"></option>
+        </select>
+    </div>
+</div>
+</body>
+
+<script>
+    $(function () {
+        $.get("/getHtml",function (e) {
+            $('.test').append(e)
+        })
+    })
+</script>
+
+</html>
