@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<div th:each="obj : ${poems}">
+    <h1 th:utext="${obj.title}"></h1>
+    <p th:utext="${obj.content}"></p>
+</div>
+
+</body>
+</html>
