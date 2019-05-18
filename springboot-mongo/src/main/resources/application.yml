@@ -1,0 +1,6 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb://yxd:123456@192.168.1.103:27017/
+      database: yxdDB
+      authentication-database: admin
