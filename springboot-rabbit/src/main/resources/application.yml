@@ -3,7 +3,7 @@ server:
 
 spring:
   rabbitmq:
-    host: 192.168.197.97
+    host: 192.168.197.161
     port: 5672
     username: yxd
     password: 123456

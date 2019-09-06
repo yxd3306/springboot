@@ -7,93 +7,42 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RabbitConfig {
 
-    final static String queueName = "hello";
-
-    @Bean
-    public Queue helloQueue() {
-        return new Queue("helloQueue");
-    }
-
-    @Bean
-    public Queue userQueue() {
-        return new Queue("user");
-    }
-
-    //===============以下是验证topic Exchange的队列==========
-    @Bean
-    public Queue queueMessage() {
-        return new Queue("topic.message");
-    }
-
-    @Bean
-    public Queue queueMessages() {
-        return new Queue("topic.messages");
-    }
-    //===============以上是验证topic Exchange的队列==========
-
-
-    //===============以下是验证Fanout Exchange的队列==========
-    @Bean
-    public Queue AMessage() {
-        return new Queue("fanout.A");
-    }
-
-    @Bean
-    public Queue BMessage() {
-        return new Queue("fanout.B");
-    }
-
-    @Bean
-    public Queue CMessage() {
-        return new Queue("fanout.C");
-    }
-    //===============以上是验证Fanout Exchange的队列==========
-
-
-    @Bean
-    TopicExchange exchange() {
-        return new TopicExchange("exchange");
-    }
-    @Bean
-    FanoutExchange fanoutExchange() {
-        return new FanoutExchange("fanoutExchange");
-    }
-
     /**
-     * 将队列topic.message与exchange绑定，binding_key为topic.message,就是完全匹配
-     * @param queueMessage
-     * @param exchange
+     * 创建队列
      * @return
      */
     @Bean
-    Binding bindingExchangeMessage(Queue queueMessage, TopicExchange exchange) {
-        return BindingBuilder.bind(queueMessage).to(exchange).with("topic.message");
+    public Queue asyncQueue(){
+        return new Queue("asyncCreateOrderQueue");
+    }
+    @Bean
+    public Queue asyncResponseQueue(){
+        return new Queue("asyncResponseQueue");
     }
 
     /**
-     * 将队列topic.messages与exchange绑定，binding_key为topic.#,模糊匹配
-     * @param queueMessages
-     * @param exchange
+     * 创建交换机
      * @return
      */
     @Bean
-    Binding bindingExchangeMessages(Queue queueMessages, TopicExchange exchange) {
-        return BindingBuilder.bind(queueMessages).to(exchange).with("topic.#");
+    public TopicExchange asyncExchange(){
+        return new TopicExchange("asyncExchange");
     }
 
+    /**
+     * 队列绑定到交换机
+     * @param asyncQueue
+     * @param asyncExchange
+     * @return
+     */
     @Bean
-    Binding bindingExchangeA(Queue AMessage, FanoutExchange fanoutExchange) {
-        return BindingBuilder.bind(AMessage).to(fanoutExchange);
+    public Binding bindingOrderExchange(Queue asyncQueue,TopicExchange asyncExchange){
+        return BindingBuilder.bind(asyncQueue).to(asyncExchange).with("topic.asyncCreateOrderKey");
+    }
+    @Bean
+    public Binding bindingAsyncResponseExchange(Queue asyncResponseQueue,TopicExchange asyncExchange){
+        return BindingBuilder.bind(asyncResponseQueue).to(asyncExchange).with("topic.asyncResponseKey");
     }
 
-    @Bean
-    Binding bindingExchangeB(Queue BMessage, FanoutExchange fanoutExchange) {
-        return BindingBuilder.bind(BMessage).to(fanoutExchange);
-    }
-
-    @Bean
-    Binding bindingExchangeC(Queue CMessage, FanoutExchange fanoutExchange) {
-        return BindingBuilder.bind(CMessage).to(fanoutExchange);
-    }
 
 }
