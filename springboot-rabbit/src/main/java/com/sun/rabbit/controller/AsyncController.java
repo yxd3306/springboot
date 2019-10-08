@@ -21,7 +21,7 @@ import java.util.concurrent.locks.ReentrantLock;
  * @Author 喻湘东
  * @Create 2019-09-06 09:27:02
  */
-@Controller
+//@Controller
 @Slf4j
 public class AsyncController {
 

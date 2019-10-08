@@ -1,5 +1,3 @@
-server:
-  port: 8008
 spring:
   rabbitmq:
     host: localhost
@@ -16,6 +14,3 @@ spring:
         max-concurrency: 10
         retry:
           enabled: true
-        prefetch: 2 # 每次处理消息的数量
-    template:
-      mandatory: true

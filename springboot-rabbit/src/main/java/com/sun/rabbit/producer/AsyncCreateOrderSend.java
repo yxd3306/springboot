@@ -13,7 +13,7 @@ import java.util.Map;
  * @Author 喻湘东
  * @Create 2019-09-06 09:32:35
  */
-@Component
+//@Component
 @Slf4j
 public class AsyncCreateOrderSend {
 
@@ -25,7 +25,7 @@ public class AsyncCreateOrderSend {
 
     public void send(UserMessage userMessage){
         this.rabbitTemplate.convertAndSend(EXCHANGE,ROUTING_KEY,userMessage);
-        log.info("AsyncCreateOrderSend消息发送成功：{}",userMessage);
+        // log.info("AsyncCreateOrderSend消息发送成功：{}",userMessage);
     }
 
 }

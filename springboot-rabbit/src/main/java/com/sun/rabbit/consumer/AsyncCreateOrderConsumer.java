@@ -19,7 +19,7 @@ import java.util.Set;
  * @Create 2019-09-06 09:35:34
  * 用于处理业务逻辑的消费者
  */
-@Component
+//@Component
 @RabbitListener(queues = "asyncCreateOrderQueue")
 @Slf4j
 public class AsyncCreateOrderConsumer {

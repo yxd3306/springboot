@@ -13,7 +13,7 @@ import java.util.Map;
  * @Author 喻湘东
  * @Create 2019-09-06 09:32:35
  */
-@Component
+//@Component
 @Slf4j
 public class AsyncResponseSend {
 

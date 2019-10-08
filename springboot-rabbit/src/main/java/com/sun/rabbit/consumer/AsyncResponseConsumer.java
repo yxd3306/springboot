@@ -17,7 +17,7 @@ import java.util.Map;
  * @Create 2019-09-06 09:49:55
  * 用于接收响应结果的消费者
  */
-@Component
+//@Component
 @RabbitListener(queues = "asyncResponseQueue")
 @Slf4j
 public class AsyncResponseConsumer {
